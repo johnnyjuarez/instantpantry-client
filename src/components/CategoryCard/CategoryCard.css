@@ -1,0 +1,15 @@
+.categoryCard {
+  border: 1px solid black;
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+  margin-top: 5%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.btn-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
