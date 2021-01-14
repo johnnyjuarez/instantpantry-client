@@ -36,6 +36,7 @@ export default function Dashboard() {
     <div>
       <h1 className='title'>InstantPantry</h1>
       {categoryCards}
+      <button>Add Category</button>
     </div>
   )
 }
