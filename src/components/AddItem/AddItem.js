@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Camera from '../Camera/Camera'
+import BarcodeScanner from '../BarcodeScanner/BarcodeScanner'
 
 import './AddItem.css'
 
@@ -28,7 +28,7 @@ export default function AddItem() {
   </form>
   )
 
-  const camera = <Camera />
+  const camera = <BarcodeScanner />
 
   let renderForm = null;
   if(useForm) {
@@ -40,10 +40,12 @@ export default function AddItem() {
 
   const onManualSelect = (e) => {
     setUseForm(true);
+    setUseCamera(false);
   }
 
   const onCameraSelect = (e) => {
     setUseCamera(true);
+    setUseForm(false);
   }
 
   return (

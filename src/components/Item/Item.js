@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
-import Camera from '../Camera/Camera';
+// import Camera from '../Camera/Camera';
 
 export default function Item(props) {
-  const [useForm, setUseForm] = useState(false);
-  const [useCamera, setUseCamera] = useState(false);
+
   const itemData = props.itemData;
   const image = null;
 

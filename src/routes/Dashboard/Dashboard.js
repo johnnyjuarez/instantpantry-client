@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import CategoryCard from '../../components/CategoryCard/CategoryCard'
 import Modal from '../../components/Modal/Modal'
 import TokenService from '../../services/token-service'
@@ -17,38 +17,39 @@ export default function Dashboard() {
 
   useEffect(() => {
     setIsDelete(false);
+
     fetch(`${config.API_ENDPOINT}/category/${user_id}`, {
       headers: {
         'content-Type': 'application/json',
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      setCategories(data);
-    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setCategories(data);
+      })
   }, [addCategory, isDelete])
 
 
   const addCategoryHandler = () => {
     setAddCategory(!addCategory);
   }
-  
+
   let addCategoryHTML = (
     <Modal open={addCategory} onClose={addCategoryHandler}>
-      <AddCategoryForm closeOnSubmit={addCategoryHandler}/>
+      <AddCategoryForm closeOnSubmit={addCategoryHandler} />
     </Modal>
   )
 
   const categoryCards = categories.map((category) => {
-    return <CategoryCard 
-      key={category.id} 
-      id={category.id} 
-      title={category.category_title} 
-      onDelete={() => {setIsDelete(true)}}
-      />
+    return <CategoryCard
+      key={category.id}
+      id={category.id}
+      title={category.category_title}
+      onDelete={() => { setIsDelete(true) }}
+    />
   })
 
   return (
