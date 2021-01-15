@@ -22,7 +22,6 @@ export default function List(props) {
       return res.json();
     })
     .then(data => {
-      console.log(data);
       setItems(data);
     })
   }, [])

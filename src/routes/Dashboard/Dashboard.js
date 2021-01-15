@@ -6,14 +6,17 @@ import TokenService from '../../services/token-service'
 import config from '../../config';
 import AddCategoryForm from '../../components/AddCategoryForm/AddCategoryForm';
 
+
 export default function Dashboard() {
   // state for holding category data
   const [categories, setCategories] = useState([])
   const [addCategory, setAddCategory] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
-  const user_id = localStorage.getItem('userId')
+  const user_id = localStorage.getItem('userId');
 
   useEffect(() => {
+    setIsDelete(false);
     fetch(`${config.API_ENDPOINT}/category/${user_id}`, {
       headers: {
         'content-Type': 'application/json',
@@ -24,10 +27,9 @@ export default function Dashboard() {
       return res.json();
     })
     .then(data => {
-      console.log(data);
       setCategories(data);
     })
-  }, [addCategory])
+  }, [addCategory, isDelete])
 
 
   const addCategoryHandler = () => {
@@ -41,7 +43,12 @@ export default function Dashboard() {
   )
 
   const categoryCards = categories.map((category) => {
-    return <CategoryCard key={category.id} id={category.id} title={category.category_title} />
+    return <CategoryCard 
+      key={category.id} 
+      id={category.id} 
+      title={category.category_title} 
+      onDelete={() => {setIsDelete(true)}}
+      />
   })
 
   return (

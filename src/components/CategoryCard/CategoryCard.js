@@ -1,9 +1,15 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
+import TokenService from '../../services/token-service';
+
+import config from '../../config';
 
 import './CategoryCard.css'
 
 export default function CategoryCard(props) {
+
+  const user_id = localStorage.getItem('userId');
+
   let history = useHistory();
 
   const viewItemsHandler = () => {
@@ -15,7 +21,16 @@ export default function CategoryCard(props) {
   }
 
   const deleteHandler = () => {
-    alert('deleted');
+    fetch(`${config.API_ENDPOINT}/category/${user_id}/${props.id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(() => {
+      props.onDelete();
+    })
   }
 
   return (
