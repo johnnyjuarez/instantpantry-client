@@ -3,7 +3,7 @@ import Scanner from '../Scanner/Scanner'
 import ReactDOM from "react-dom";
 import config from '../../config';
 import ItemContext from '../../itemContext';
-import { debounce } from 'lodash';
+import { debounce } from 'throttle-debounce';
 
 // import "./styles.css";
 
@@ -13,7 +13,7 @@ export default function BarcodeScanner() {
   const [newResult, setNewResult] = useState(null);
   const [resultData, setResultData] = useState({})
 
-  const onDetected = result => {
+  let onDetected = debounce(1000, (result) => {
 
     if (result) {
       setCamera(false);
@@ -23,7 +23,7 @@ export default function BarcodeScanner() {
       return;
     }
 
-  };
+  });
 
   return (
     <div className="App">

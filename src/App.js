@@ -9,20 +9,21 @@ import ItemContext from './itemContext';
 import './App.css';
 
 // import useDebounce from './services/useDebounce';
-import { debounce } from 'lodash';
+// import { debounce } from 'lodash';
+import { debounce } from 'throttle-debounce';
 
 function App() {
 
 
   const [data, setData] = useState({})
 
-  const debounceData = useCallback(debounce((newData) => setData(newData), 1000), [])////setData(newData);
+  // const debounceData = useCallback(debounce((newData) => setData(newData), 1000), [])////setData(newData);
 
-  const passData = (newData) => {
+  let passData = debounce(1000, (newData) => {
     console.log('passData hit')
-    debounceData(newData);
+    // debounceData(newData);
     return;
-  }
+  })
 
   const value = {
     passData
