@@ -1,39 +1,85 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import BarcodeScanner from '../BarcodeScanner/BarcodeScanner'
 import ItemContext from '../../itemContext';
+import config from '../../config';
+import TokenService from '../../services/token-service';
 
 import './AddItem.css'
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 
-export default function AddItem(props) {
-  console.log(typeof props.barcode)
+function AddItem(props) {
+  const context = useContext(ItemContext);
+  // console.log(props.barcode)
   const [useForm, setUseForm] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
-  const [data, setData] = useState({});
+  const [barcode, setBarcode] = useState({});
+  const [userAmount, setUserAmount] = useState('');
+  const [itemName, setItemName] = useState('');
   let history = useHistory();
 
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    history.push('/dashboard');
+    const path = props.history.location.pathname;
+    const numPath = path.match(/\d/g);
+    let payload = {
+      item_name: itemName,
+      amount: userAmount
+    }
+    fetch(`${config.API_ENDPOINT}/items/${numPath}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      return res.json();
+    })
+      .then(() => {
+        context.resetData();
+        setUseCamera(false);
+        setUseForm(false);
+      })
+  }
+
+  const onScanSubmitHandler = (e) => {
+    e.preventDefault();
+    const path = props.history.location.pathname;
+    const numPath = path.match(/\d/g);
+    let payload = {
+      item_name: props.barcodeData.description,
+      amount: userAmount,
+      image: props.barcodeData.image_url,
+      barcode: props.barcodeData.code
+    }
+    fetch(`${config.API_ENDPOINT}/items/${numPath}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(payload)
+    }).then(res => {
+      return res.json();
+    })
+      .then(() => {
+        context.resetData();
+        setUseCamera(false);
+        setUseForm(false);
+      })
   }
 
   const formHTML = (
     <form onSubmit={onSubmitHandler} className='add-item-form'>
       <label>Item Name:</label>
-      <input type='text' />
+      <input onChange={(e) => { setItemName(e.target.value) }} type='text' />
       <label>Amount:</label>
-      <input type='text' />
-      <label>Image:</label>
-      <input type='text' />
+      <input onChange={(e) => { setUserAmount(e.target.value) }} type='text' />
       <input type='submit' />
     </form>
   )
-
-  if (typeof props.barcode === 'string') {
-    setUseCamera(false);
-  }
 
   const camera = <BarcodeScanner />
 
@@ -55,7 +101,23 @@ export default function AddItem(props) {
     setUseForm(false);
   }
 
+  const amountChangeHandler = (e) => {
+    setUserAmount(e.target.value);
+  }
 
+  if (props.barcodeData.class) {
+    console.log('barcode prop', props.barcodeData)
+    renderForm = (
+      <form onSubmit={onScanSubmitHandler} className='add-item-form'>
+        <label>Item Name:</label>
+        <input type='text' defaultValue={props.barcodeData.description} />
+        <label>Enter Amount:</label>
+        <input onChange={amountChangeHandler} required={true} type='text' />
+        <img src={props.barcodeData.image_url} alt={props.barcodeData.description} />
+        <input type='submit' />
+      </form>
+    )
+  }
 
 
   return (
@@ -69,3 +131,4 @@ export default function AddItem(props) {
     </div>
   )
 }
+export default withRouter(AddItem);

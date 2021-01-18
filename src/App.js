@@ -8,25 +8,28 @@ import AddItem from './components/AddItem/AddItem'
 import ItemContext from './itemContext';
 import './App.css';
 
-// import useDebounce from './services/useDebounce';
-// import { debounce } from 'lodash';
-import { debounce } from 'throttle-debounce';
 
 function App() {
 
 
   const [data, setData] = useState({})
 
-  // const debounceData = useCallback(debounce((newData) => setData(newData), 1000), [])////setData(newData);
-
-  let passData = debounce(1000, (newData) => {
-    console.log('passData hit')
-    // debounceData(newData);
+  let passData = (newData) => {
+    if (!data) {
+      setData(newData);
+    }
     return;
-  })
+  }
+
+  let resetData = (e) => {
+    if (data) {
+      setData('');
+    }
+  }
 
   const value = {
-    passData
+    passData,
+    resetData
   }
   return (
     <ItemContext.Provider value={value}>
@@ -36,7 +39,7 @@ function App() {
         <Route exact path='/dashboard' component={Dashboard} />
         <Route exact path='/category/:id' component={List} />
         <Route exact path='/category/:id/addItem' component={AddItem} >
-          <AddItem barcode={data} />
+          <AddItem barcodeData={data} />
         </Route>
       </Router>
     </ItemContext.Provider>

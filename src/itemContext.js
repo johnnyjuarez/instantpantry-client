@@ -1,7 +1,8 @@
 import React from 'react';
 
 const itemContext = React.createContext({
-  passData: () => { }
+  passData: () => { },
+  resetData: () => { },
 })
 
 export default itemContext;

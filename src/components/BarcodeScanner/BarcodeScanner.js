@@ -11,29 +11,44 @@ export default function BarcodeScanner() {
   const context = useContext(ItemContext);
   const [camera, setCamera] = useState(false);
   const [newResult, setNewResult] = useState(null);
-  const [resultData, setResultData] = useState({})
+  const [loading, setLoading] = useState(false)
 
   let onDetected = debounce(1000, (result) => {
 
     if (result) {
       setCamera(false);
-      setNewResult(result);
-      context.passData(result);
-      console.log('onDetected')
+      setLoading(true);
+      fetch(`https://cors-anywhere.herokuapp.com/https://barcode.monster/api/${result}`)
+        .then(res => {
+          return res.json()
+        })
+        .then(data => {
+          setLoading(false);
+          context.passData(data);
+        });
       return;
     }
-
   });
 
-  return (
-    <div className="App">
-      <p>{newResult ? newResult : "Scanning..."}</p>
-      <button onClick={() => setCamera(!camera)}>
-        {camera ? "Stop" : "Start"}
-      </button>
-      <div className="container">
-        {camera && <Scanner onDetected={onDetected} />}
-      </div>
+  let startCameraHandler = () => {
+    setCamera(!camera);
+    context.resetData();
+  }
+
+
+  let renderHTML = (<div className="App">
+    <p>{newResult ? newResult : "Scanning..."}</p>
+    <button onClick={startCameraHandler}>
+      {camera ? "Stop" : "Start"}
+    </button>
+    <div className="container">
+      {camera && <Scanner onDetected={onDetected} />}
     </div>
-  );
+  </div>)
+
+  if (loading) {
+    renderHTML = <div><p>Loading...</p></div>
+  }
+
+  return renderHTML;
 }
