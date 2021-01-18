@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import TokenService from '../../services/token-service';
 
 import config from '../../config';
+
+import './LoginForm.css';
 
 export default function LoginForm(props) {
   let history = useHistory();
@@ -25,19 +27,19 @@ export default function LoginForm(props) {
       },
       body: JSON.stringify(credentials)
     })
-    .then(res => {
-      if(!res.ok) {
-        return res.json().then(e => {
-          return Promise.reject(e);
-        })
-      }
-      return res.json();
-    })
-    .then((data) => {
-      localStorage.setItem('userId', data.id);
-      TokenService.saveAuthToken(data.authToken);
-      history.push('/dashboard');
-    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(e => {
+            return Promise.reject(e);
+          })
+        }
+        return res.json();
+      })
+      .then((data) => {
+        localStorage.setItem('userId', data.id);
+        TokenService.saveAuthToken(data.authToken);
+        history.push('/dashboard');
+      })
   }
 
   const onChangeUsername = (e) => {
@@ -49,9 +51,9 @@ export default function LoginForm(props) {
   }
 
   return (
-    <div>
+    <div className='loginForm'>
       <form onSubmit={loginHandler} className='login-form'>
-        <h2>Login</h2>
+        <h2 className='loginForm-title'>Login</h2>
         <label>Username:</label>
         <input onChange={onChangeUsername} type='text' />
         <label>Password:</label>

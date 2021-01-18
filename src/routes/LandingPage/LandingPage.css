@@ -1,5 +1,19 @@
+/* colors
+  f8f9fa
+  e9ecef
+  dee2e6
+  ced4da
+  adb5bd
+  6c757d
+  495057
+  343a40
+  212529
+*/
+
 .title {
   text-align: center;
+  color: #212529;
+  text-shadow: 2px 2px 4px rgba(33, 37, 41 0.25), 2px 2px 10px rgba(33, 37, 41, 0.5);
 }
 
 .login-form {

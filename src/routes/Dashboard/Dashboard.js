@@ -5,7 +5,7 @@ import TokenService from '../../services/token-service'
 
 import config from '../../config';
 import AddCategoryForm from '../../components/AddCategoryForm/AddCategoryForm';
-
+import Nav from '../../components/Nav/Nav';
 
 export default function Dashboard() {
   // state for holding category data
@@ -54,6 +54,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      <Nav />
       <h1 className='title'>InstantPantry</h1>
       {categoryCards}
       <button onClick={addCategoryHandler}>Add Category</button>
