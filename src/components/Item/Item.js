@@ -23,6 +23,9 @@ function Item(props) {
         authorization: `bearer ${TokenService.getAuthToken()}`
       }
     })
+      .then(() => {
+        props.renderUpdate();
+      })
   }
 
   const submitEditHandler = (e) => {
@@ -41,6 +44,7 @@ function Item(props) {
     })
       .then(() => {
         setIsEdit(false);
+        props.renderUpdate();
       })
   }
 
