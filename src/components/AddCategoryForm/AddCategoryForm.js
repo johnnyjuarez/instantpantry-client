@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import config from '../../config';
 import TokenService from '../../services/token-service';
 
+import './AddCategoryForm.css';
+
 export default function AddCategoryForm(props) {
   const user_id = localStorage.getItem('userId');
   const [catName, setCatName] = useState('');
@@ -29,12 +31,12 @@ export default function AddCategoryForm(props) {
   }
 
   return (
-    <div>
+    <div className='addCat-form'>
       <h2>Add Category</h2>
       <form onSubmit={addCategorySubmitHandler}>
         <label>Category Title:</label>
         <input onChange={catNameHandler} type='text' />
-        <input type='submit' />
+        <input className='addCat-submit' type='submit' />
       </form>
     </div>
   )

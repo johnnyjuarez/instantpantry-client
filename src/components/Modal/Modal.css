@@ -20,3 +20,12 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
 }
+
+.modal button {
+  margin-top: 5%;
+  background-color: #ced4da;
+  color: #212529;
+  border: 1px solid #212529;
+  padding: 5px;
+  font-weight: bold;
+}

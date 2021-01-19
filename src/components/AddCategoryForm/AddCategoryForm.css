@@ -1,0 +1,15 @@
+.addCat-form form input {
+  padding: 5px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26), inset 0 0 1px 1px #888;
+  margin-top: 2%;
+}
+
+.addCat-submit {
+  margin-top: 5%;
+  background-color: #ced4da;
+  color: #212529;
+  border: 1px solid #212529;
+  padding: 8px;
+  font-weight: bold;
+}

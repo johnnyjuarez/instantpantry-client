@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import Modal from '../Modal/Modal';
 
+import './Item.css';
+
 function Item(props) {
 
   const [isEdit, setIsEdit] = useState(false);
@@ -71,11 +73,11 @@ function Item(props) {
 
   if (itemData.image) {
     renderHTML = (
-      <div>
-        <h3>{itemData.item_name}</h3>
+      <div className='item'>
+        <h3>{itemData.item_name.replace(/<.*$/, '')}</h3>
         <p>Amount : {itemData.amount}</p>
         <img src={itemData.image} alt={itemData.item_name} />
-        <div>
+        <div className='item-btnBox'>
           <button onClick={editItemHandler}>Edit</button>
           <button onClick={onDeleteHandler}>Delete</button>
           {editItemHTML}
@@ -85,10 +87,10 @@ function Item(props) {
   } else {
     renderHTML =
       (
-        <div>
+        <div className='item'>
           <h3>{itemData.item_name}</h3>
           <p>Amount : {itemData.amount}</p>
-          <div>
+          <div className='item-btnBox'>
             <button onClick={editItemHandler}>Edit</button>
             <button onClick={onDeleteHandler}>Delete</button>
             {editItemHTML}

@@ -40,7 +40,7 @@ export default function List(props) {
       <nav>
         <Link to='/dashboard'>Home</Link>
       </nav>
-      <h1>List</h1>
+      <h1 className='title'>Item List</h1>
       {renderList}
     </div>
   )

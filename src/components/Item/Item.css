@@ -1,0 +1,36 @@
+/* colors
+  f8f9fa
+  e9ecef
+  dee2e6
+  ced4da
+  adb5bd
+  6c757d
+  495057
+  343a40
+  212529
+*/
+
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  margin: 2.5% auto;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.item-btnBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.item-btnBox button {
+  margin-top: 5%;
+  background-color: #ced4da;
+  color: #212529;
+  border: 1px solid #212529;
+  padding: 5px;
+  font-weight: bold;
+}
