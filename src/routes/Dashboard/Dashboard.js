@@ -7,6 +7,8 @@ import config from '../../config';
 import AddCategoryForm from '../../components/AddCategoryForm/AddCategoryForm';
 import Nav from '../../components/Nav/Nav';
 
+import './Dashboard.css';
+
 export default function Dashboard() {
   // state for holding category data
   const [categories, setCategories] = useState([])
@@ -57,7 +59,7 @@ export default function Dashboard() {
       <Nav />
       <h1 className='title'>InstantPantry</h1>
       {categoryCards}
-      <button onClick={addCategoryHandler}>Add Category</button>
+      <button className='addCat-btn' onClick={addCategoryHandler}>Add Category</button>
       {addCategoryHTML}
     </div>
   )
