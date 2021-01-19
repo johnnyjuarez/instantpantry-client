@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import config from '../../config';
 import TokenService from '../../services/token-service'
 import Item from '../../components/Item/Item'
+import Nav from '../../components/Nav/Nav'
 
 export default function List(props) {
 
@@ -37,9 +38,7 @@ export default function List(props) {
 
   return (
     <div>
-      <nav>
-        <Link to='/dashboard'>Home</Link>
-      </nav>
+      <Nav />
       <h1 className='title'>Item List</h1>
       {renderList}
     </div>

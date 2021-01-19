@@ -3,6 +3,7 @@ import BarcodeScanner from '../BarcodeScanner/BarcodeScanner'
 import ItemContext from '../../itemContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
+import Nav from '../Nav/Nav';
 
 import './AddItem.css'
 
@@ -83,7 +84,7 @@ function AddItem(props) {
 
   const camera = <BarcodeScanner />
 
-  let renderForm = null;
+  let renderForm = formHTML;
   if (useForm) {
     renderForm = formHTML;
   } else if (useCamera) {
@@ -97,8 +98,8 @@ function AddItem(props) {
   }
 
   const onCameraSelect = (e) => {
-    setUseCamera(true);
-    setUseForm(false);
+    setUseCamera(!useCamera);
+    setUseForm(!useForm);
   }
 
   const amountChangeHandler = (e) => {
@@ -123,10 +124,11 @@ function AddItem(props) {
   return (
     <>
 
-      <Link to='/dashboard'>Home</Link>
+      <Nav />
       <h1 className='title'>Add Item</h1>
-      <button onClick={onManualSelect}>Enter Manually</button>
-      <button onClick={onCameraSelect}>Scan Barcode</button>
+      <div className='add-item-btnBox'>
+        <button onClick={onCameraSelect}>Scan Barcode</button>
+      </div>
       {renderForm}
     </>
   )
