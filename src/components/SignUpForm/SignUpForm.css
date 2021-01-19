@@ -4,3 +4,46 @@
   width: 40%;
   margin: 0 auto;
 }
+
+/* colors
+  f8f9fa
+  e9ecef
+  dee2e6
+  ced4da
+  adb5bd
+  6c757d
+  495057
+  343a40
+  212529
+*/
+
+.signup {
+  background-color: #ced4da;
+  width: 80vw;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(33, 37, 41, 0.25);
+}
+
+.signup input {
+  padding: 5px;
+  border: none;
+  margin-top: 5%;
+}
+
+.signup input[type='submit'] {
+  background: white;
+}
+
+.signup-title {
+  text-align: center;
+}
+
+.login-nav {
+  text-decoration: none;
+  background-color: #e9ecef;
+  padding: 5px;
+  margin: 3%;
+  color: #212529;
+  border: 1px solid #212529;
+}

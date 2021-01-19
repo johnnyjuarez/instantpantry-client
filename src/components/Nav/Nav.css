@@ -1,0 +1,37 @@
+/* colors
+  f8f9fa
+  e9ecef
+  dee2e6
+  ced4da
+  adb5bd
+  6c757d
+  495057
+  343a40
+  212529
+*/
+
+.navbar {
+  height: 50px;
+  background-color: #212529;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  background-color: #212529;
+  color: #adb5bd;
+  border: 1px solid #adb5bd;
+  padding: 5px;
+}
+
+.navbar button {
+  background-color: #212529;
+  color: #adb5bd;
+  border: 1px solid #adb5bd;
+  padding: 8px
+}
+
+.navbar-item {
+  margin-left: 3%;
+}

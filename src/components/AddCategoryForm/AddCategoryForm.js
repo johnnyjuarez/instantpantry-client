@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import config from '../../config';
 import TokenService from '../../services/token-service';
 
@@ -23,9 +23,9 @@ export default function AddCategoryForm(props) {
       },
       body: JSON.stringify(payload),
     })
-    .then(() => {
-      props.closeOnSubmit();
-    })
+      .then(() => {
+        props.closeOnSubmit();
+      })
   }
 
   return (

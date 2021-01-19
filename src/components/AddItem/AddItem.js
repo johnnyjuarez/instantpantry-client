@@ -121,14 +121,14 @@ function AddItem(props) {
 
 
   return (
-    <div>
+    <>
 
       <Link to='/dashboard'>Home</Link>
       <h1 className='title'>Add Item</h1>
       <button onClick={onManualSelect}>Enter Manually</button>
       <button onClick={onCameraSelect}>Scan Barcode</button>
       {renderForm}
-    </div>
+    </>
   )
 }
 export default withRouter(AddItem);

@@ -22,3 +22,12 @@
   width: 40%;
   margin: 0 auto;
 }
+
+.signup-nav {
+  text-decoration: none;
+  background-color: #e9ecef;
+  padding: 5px;
+  margin: 3%;
+  color: #212529;
+  border: 1px solid #212529;
+}

@@ -30,20 +30,21 @@ function SignUpForm(props) {
   return (
     <div>
       <nav>
-        <Link to="/">Login</Link>
+        <Link className='login-nav' to="/">Login</Link>
       </nav>
       <h1 className='title'>InstantPantry</h1>
-
-      <form onSubmit={postUserHandler} className='signup-form'>
-        <h2>Sign Up</h2>
-        <label>Username:</label>
-        <input onChange={(e) => { setUsername(e.target.value) }} type='text' />
-        <label>Name:</label>
-        <input onChange={(e) => { setName(e.target.value) }} type='text' />
-        <label>Password:</label>
-        <input onChange={(e) => { setPassword(e.target.value) }} type='password' />
-        <input type='submit' />
-      </form>
+      <div className='signup'>
+        <form onSubmit={postUserHandler} className='signup-form'>
+          <h2 className='signup-title'>Sign Up</h2>
+          <label>Username:</label>
+          <input onChange={(e) => { setUsername(e.target.value) }} type='text' />
+          <label>Name:</label>
+          <input onChange={(e) => { setName(e.target.value) }} type='text' />
+          <label>Password:</label>
+          <input onChange={(e) => { setPassword(e.target.value) }} type='password' />
+          <input type='submit' />
+        </form>
+      </div>
     </div>
   )
 }
