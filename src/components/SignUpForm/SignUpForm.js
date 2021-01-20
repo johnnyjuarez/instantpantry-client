@@ -8,22 +8,34 @@ function SignUpForm(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [error, setError] = useState({})
 
   const postUserHandler = (e) => {
+    e.preventDefault();
     let payload = {
       username,
       name,
       password
     }
-    return fetch(`${config.API_ENDPOINT}/user`, {
+    fetch(`${config.API_ENDPOINT}/user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     })
-      .then(() => {
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(e => {
+            return Promise.reject(e);
+          })
+        }
         props.history.replace('/')
+        return res.json();
+      })
+      .catch(err => {
+        console.log(err);
+        setError(err.error);
       })
   }
 
@@ -36,12 +48,13 @@ function SignUpForm(props) {
       <div className='signup'>
         <form onSubmit={postUserHandler} className='signup-form'>
           <h2 className='signup-title'>Sign Up</h2>
+          {error ? <p className='error'>{error}</p> : null}
           <label>Username:</label>
-          <input onChange={(e) => { setUsername(e.target.value) }} type='text' />
+          <input required={true} onChange={(e) => { setUsername(e.target.value) }} type='text' />
           <label>Name:</label>
-          <input onChange={(e) => { setName(e.target.value) }} type='text' />
+          <input required={true} onChange={(e) => { setName(e.target.value) }} type='text' />
           <label>Password:</label>
-          <input onChange={(e) => { setPassword(e.target.value) }} type='password' />
+          <input required={true} onChange={(e) => { setPassword(e.target.value) }} type='password' />
           <input type='submit' />
         </form>
       </div>
