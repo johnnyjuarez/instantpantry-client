@@ -6,10 +6,11 @@ import ItemContext from '../../itemContext';
 import { debounce } from 'throttle-debounce';
 
 // import "./styles.css";
+import './BarcodeScanner.css'
 
 export default function BarcodeScanner() {
   const context = useContext(ItemContext);
-  const [camera, setCamera] = useState(false);
+  const [camera, setCamera] = useState(true);
   const [newResult, setNewResult] = useState(null);
   const [loading, setLoading] = useState(false)
 
@@ -36,10 +37,10 @@ export default function BarcodeScanner() {
   }
 
 
-  let renderHTML = (<div className="App">
+  let renderHTML = (<div className="barcodeScanner">
     <p>{newResult ? newResult : "Scanning..."}</p>
     <button onClick={startCameraHandler}>
-      {camera ? "Stop" : "Start"}
+      {!camera ? 'start' : 'stop'}
     </button>
     <div className="container">
       {camera && <Scanner onDetected={onDetected} />}

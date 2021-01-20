@@ -99,7 +99,7 @@ function AddItem(props) {
 
   const onCameraSelect = (e) => {
     setUseCamera(!useCamera);
-    setUseForm(!useForm);
+    setUseForm(false);
   }
 
   const amountChangeHandler = (e) => {

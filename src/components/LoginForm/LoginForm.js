@@ -40,6 +40,10 @@ export default function LoginForm(props) {
         TokenService.saveAuthToken(data.authToken);
         history.push('/dashboard');
       })
+      .catch(err => {
+        setError(err.error);
+        console.log(err);
+      })
   }
 
   const onChangeUsername = (e) => {
@@ -54,6 +58,7 @@ export default function LoginForm(props) {
     <div className='loginForm'>
       <form onSubmit={loginHandler} className='login-form'>
         <h2 className='loginForm-title'>Login</h2>
+        {error ? <p className='error'>{error}</p> : null}
         <label>Username:</label>
         <input onChange={onChangeUsername} type='text' />
         <label>Password:</label>
