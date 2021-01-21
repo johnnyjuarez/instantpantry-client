@@ -34,7 +34,6 @@ function SignUpForm(props) {
         return res.json();
       })
       .catch(err => {
-        console.log(err);
         setError(err.error);
       })
   }

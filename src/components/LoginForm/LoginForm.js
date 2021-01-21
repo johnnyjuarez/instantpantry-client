@@ -42,7 +42,6 @@ export default function LoginForm(props) {
       })
       .catch(err => {
         setError(err.error);
-        console.log(err);
       })
   }
 

@@ -13,7 +13,6 @@ function Item(props) {
   const [newAmount, setNewAmount] = useState('');
 
   const itemData = props.itemData;
-  console.log(props);
   const categoryId = props.location.pathname.slice(10);
 
 
