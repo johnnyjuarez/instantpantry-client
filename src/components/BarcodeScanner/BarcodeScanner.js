@@ -24,8 +24,12 @@ export default function BarcodeScanner() {
           return res.json()
         })
         .then(data => {
+          console.log('data hit');
           setLoading(false);
           context.passData(data);
+        })
+        .catch(err => {
+          console.log('err out');
         });
       return;
     }

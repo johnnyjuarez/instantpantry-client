@@ -47,7 +47,7 @@ function SignUpForm(props) {
       <div className='signup'>
         <form onSubmit={postUserHandler} className='signup-form'>
           <h2 className='signup-title'>Sign Up</h2>
-          {error ? <p className='error'>{error}</p> : null}
+          {error.message ? <p className='error'>{error}</p> : null}
           <label>Username:</label>
           <input required={true} onChange={(e) => { setUsername(e.target.value) }} type='text' />
           <label>Name:</label>
