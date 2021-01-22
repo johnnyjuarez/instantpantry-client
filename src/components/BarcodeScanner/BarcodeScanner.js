@@ -22,6 +22,7 @@ export default function BarcodeScanner() {
           return res.json()
         })
         .then(data => {
+          setNewResult(data);
           setLoading(false);
           context.passData(data);
         })
@@ -39,7 +40,6 @@ export default function BarcodeScanner() {
 
 
   let renderHTML = (<div className="barcodeScanner">
-    <p>{newResult ? newResult : "Scanning..."}</p>
     <button onClick={startCameraHandler}>
       {!camera ? 'start' : 'stop'}
     </button>

@@ -32,7 +32,7 @@ export default function Dashboard() {
       .then(data => {
         setCategories(data);
       })
-  }, [addCategory, isDelete])
+  }, [addCategory, isDelete, user_id])
 
 
   const addCategoryHandler = () => {

@@ -30,10 +30,10 @@ const Scanner = props => {
             Number(drawingCanvas.getAttribute("height"))
           );
           result.boxes
-            .filter(function(box) {
+            .filter(function (box) {
               return box !== result.box;
             })
-            .forEach(function(box) {
+            .forEach(function (box) {
               Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
                 color: "green",
                 lineWidth: 2
@@ -60,7 +60,7 @@ const Scanner = props => {
     });
 
     Quagga.onDetected(detected);
-  }, []);
+  });
 
   const detected = result => {
     onDetected(result.codeResult.code);

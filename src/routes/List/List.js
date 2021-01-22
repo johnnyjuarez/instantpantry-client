@@ -24,7 +24,7 @@ export default function List(props) {
       .then(data => {
         setItems(data);
       })
-  }, [update])
+  }, [update, category_id])
 
   const updateRender = () => {
     setUpdate(!update);
