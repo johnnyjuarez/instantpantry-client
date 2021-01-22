@@ -9,7 +9,6 @@ import './BarcodeScanner.css'
 export default function BarcodeScanner() {
   const context = useContext(ItemContext);
   const [camera, setCamera] = useState(true);
-  const [newResult, setNewResult] = useState(null);
   const [loading, setLoading] = useState(false)
 
   let onDetected = debounce(1000, (result) => {
@@ -22,7 +21,6 @@ export default function BarcodeScanner() {
           return res.json()
         })
         .then(data => {
-          setNewResult(data);
           setLoading(false);
           context.passData(data);
         })
