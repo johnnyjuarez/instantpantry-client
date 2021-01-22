@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import Scanner from '../Scanner/Scanner'
-import ReactDOM from "react-dom";
-import config from '../../config';
 import ItemContext from '../../itemContext';
 import { debounce } from 'throttle-debounce';
 

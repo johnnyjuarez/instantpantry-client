@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import BarcodeScanner from '../BarcodeScanner/BarcodeScanner'
 import ItemContext from '../../itemContext';
 import config from '../../config';
@@ -7,16 +7,14 @@ import Nav from '../Nav/Nav';
 
 import './AddItem.css'
 
-import { Link, useHistory, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function AddItem(props) {
   const context = useContext(ItemContext);
   const [useForm, setUseForm] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
-  const [barcode, setBarcode] = useState({});
   const [userAmount, setUserAmount] = useState('');
   const [itemName, setItemName] = useState('');
-  let history = useHistory();
 
 
   const onSubmitHandler = (e) => {
@@ -90,11 +88,6 @@ function AddItem(props) {
     renderForm = camera;
   }
 
-
-  const onManualSelect = (e) => {
-    setUseForm(true);
-    setUseCamera(false);
-  }
 
   const onCameraSelect = (e) => {
     setUseCamera(!useCamera);

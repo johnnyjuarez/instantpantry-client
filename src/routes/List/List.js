@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import config from '../../config';
 import TokenService from '../../services/token-service'
 import Item from '../../components/Item/Item'

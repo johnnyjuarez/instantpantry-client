@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from './routes/LandingPage/LandingPage'
 import Dashboard from './routes/Dashboard/Dashboard'
