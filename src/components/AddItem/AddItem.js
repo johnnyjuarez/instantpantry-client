@@ -11,7 +11,6 @@ import { Link, useHistory, withRouter } from 'react-router-dom';
 
 function AddItem(props) {
   const context = useContext(ItemContext);
-  // console.log(props.barcode)
   const [useForm, setUseForm] = useState(false);
   const [useCamera, setUseCamera] = useState(false);
   const [barcode, setBarcode] = useState({});
@@ -107,7 +106,6 @@ function AddItem(props) {
   }
 
   if (props.barcodeData.class) {
-    console.log('barcode prop', props.barcodeData)
     renderForm = (
       <form onSubmit={onScanSubmitHandler} className='add-item-form'>
         <label>Item Name:</label>

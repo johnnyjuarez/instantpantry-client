@@ -5,12 +5,12 @@ export default function Modal({ open, children, onClose }) {
   if (!open) return null;
   return (
     <div>
-      <div onClick={onClose} className='overlay'>
+      <div className='overlay'>
         <div className='modal'>
-          {/* <button onClick={onClose}>Close</button> */}
+          <button onClick={onClose}>Close</button>
           {children}
         </div>
       </div>
-    </div>
+    </div >
   )
 }
