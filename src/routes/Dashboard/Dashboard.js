@@ -55,13 +55,15 @@ export default function Dashboard() {
   })
 
   return (
-    <div>
+    <>
       <Nav />
       <h1 className='title'>InstantPantry</h1>
-      {categories.length === 0 ? <p style={{ textAlign: 'center' }} className='error'>Add a category to begin</p> : null}
-      {categoryCards}
-      <button className='addCat-btn' onClick={addCategoryHandler}>Add Category</button>
-      {addCategoryHTML}
-    </div>
+      <div>
+        {categories.length === 0 ? <p style={{ textAlign: 'center' }} className='error'>Add a category to begin</p> : null}
+        {categoryCards}
+        <button className='addCat-btn' onClick={addCategoryHandler}>Add Category</button>
+        {addCategoryHTML}
+      </div>
+    </>
   )
 }

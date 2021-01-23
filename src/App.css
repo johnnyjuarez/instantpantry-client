@@ -16,7 +16,10 @@ html {
 
 body {
   background-image: linear-gradient(#ced4da, #6c757d);
+  background-repeat: no-repeat;
   height: 100%;
+  background-attachment: fixed;
+  margin: 0;
 }
 
 .error {

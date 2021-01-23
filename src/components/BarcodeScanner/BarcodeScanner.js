@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Scanner from '../Scanner/Scanner'
 import ItemContext from '../../itemContext';
+import Spinner from '../Spinner/Spinner';
 import { debounce } from 'throttle-debounce';
 
 // import "./styles.css";
@@ -47,7 +48,7 @@ export default function BarcodeScanner() {
   </div>)
 
   if (loading) {
-    renderHTML = <div><p>Loading...</p></div>
+    renderHTML = <Spinner />
   }
 
   return renderHTML;
