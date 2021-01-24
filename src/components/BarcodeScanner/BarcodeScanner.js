@@ -15,6 +15,7 @@ export default function BarcodeScanner() {
   let onDetected = debounce(1000, (result) => {
 
     if (result) {
+      console.log('loading set')
       setCamera(false);
       setLoading(true);
       fetch(`https://cors-anywhere.herokuapp.com/https://barcode.monster/api/${result}`)
@@ -22,6 +23,7 @@ export default function BarcodeScanner() {
           return res.json()
         })
         .then(data => {
+          console.log('loading ended');
           setLoading(false);
           context.passData(data);
         })

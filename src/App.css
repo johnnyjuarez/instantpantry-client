@@ -10,6 +10,7 @@
   212529
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Open+Sans&display=swap');
 html {
   height: 100vh;
 }
@@ -20,9 +21,15 @@ body {
   height: 100%;
   background-attachment: fixed;
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .error {
   color: rgb(243, 29, 29);
   font-weight: bold;
+}
+
+.title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
 }
