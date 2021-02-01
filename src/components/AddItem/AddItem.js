@@ -16,6 +16,7 @@ function AddItem(props) {
   const [userAmount, setUserAmount] = useState('');
   const [itemName, setItemName] = useState('');
   const [error, setError] = useState(null);
+  const [itemAdded, setItemAdded] = useState(false);
 
 
   const onSubmitHandler = (e) => {
@@ -37,12 +38,16 @@ function AddItem(props) {
         },
         body: JSON.stringify(payload)
       }).then(res => {
+        setItemAdded(true);
         return res.json();
       })
         .then(() => {
+          console.log('tst')
           context.resetData();
           setUseCamera(false);
           setUseForm(false);
+          setUserAmount('');
+          setItemName('');
         })
     }
   }
@@ -65,12 +70,16 @@ function AddItem(props) {
       },
       body: JSON.stringify(payload)
     }).then(res => {
+      setItemAdded(true);
       return res.json();
     })
       .then(() => {
         context.resetData();
         setUseCamera(false);
         setUseForm(false);
+        setItemAdded(true);
+        setUserAmount('');
+        setItemName('');
       })
   }
 
@@ -126,6 +135,7 @@ function AddItem(props) {
         <button onClick={onCameraSelect}>Scan Barcode</button>
       </div>
       {error ? <p style={{ textAlign: 'center' }} className='error'>{error}</p> : null}
+      {itemAdded ? <p style={{ textAlign: 'center' }} className='itemAdded'>Item Added Succesfully!</p> : null}
       {renderForm}
     </>
   )
