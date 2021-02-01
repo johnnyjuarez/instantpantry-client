@@ -15,31 +15,36 @@ function AddItem(props) {
   const [useCamera, setUseCamera] = useState(false);
   const [userAmount, setUserAmount] = useState('');
   const [itemName, setItemName] = useState('');
+  const [error, setError] = useState(null);
 
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const path = props.history.location.pathname;
     const numPath = path.match(/\d/g).join('');
-    let payload = {
-      item_name: itemName,
-      amount: userAmount
-    }
-    fetch(`${config.API_ENDPOINT}/items/${numPath}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `bearer ${TokenService.getAuthToken()}`
-      },
-      body: JSON.stringify(payload)
-    }).then(res => {
-      return res.json();
-    })
-      .then(() => {
-        context.resetData();
-        setUseCamera(false);
-        setUseForm(false);
+    if (userAmount.length < 1 && itemName.length < 1) {
+      setError('Please complete the form before submission');
+    } else {
+      let payload = {
+        item_name: itemName,
+        amount: userAmount
+      }
+      fetch(`${config.API_ENDPOINT}/items/${numPath}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `bearer ${TokenService.getAuthToken()}`
+        },
+        body: JSON.stringify(payload)
+      }).then(res => {
+        return res.json();
       })
+        .then(() => {
+          context.resetData();
+          setUseCamera(false);
+          setUseForm(false);
+        })
+    }
   }
 
   const onScanSubmitHandler = (e) => {
@@ -120,6 +125,7 @@ function AddItem(props) {
       <div className='add-item-btnBox'>
         <button onClick={onCameraSelect}>Scan Barcode</button>
       </div>
+      {error ? <p style={{ textAlign: 'center' }} className='error'>{error}</p> : null}
       {renderForm}
     </>
   )

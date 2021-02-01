@@ -47,13 +47,13 @@ function SignUpForm(props) {
       <div className='signup'>
         <form onSubmit={postUserHandler} className='signup-form'>
           <h2 className='signup-title'>Sign Up</h2>
-          {error.message ? <p className='error'>{error}</p> : null}
-          <label>Username:</label>
-          <input required={true} onChange={(e) => { setUsername(e.target.value) }} type='text' />
-          <label>Name:</label>
-          <input required={true} onChange={(e) => { setName(e.target.value) }} type='text' />
-          <label>Password:</label>
-          <input required={true} onChange={(e) => { setPassword(e.target.value) }} type='password' />
+          {error ? <p className='error'>{error}</p> : null}
+          <label htmlFor='username'>Username:</label>
+          <input id='username' required={true} onChange={(e) => { setUsername(e.target.value) }} type='text' />
+          <label htmlFor='name'>Name:</label>
+          <input id='name' required={true} onChange={(e) => { setName(e.target.value) }} type='text' />
+          <label htmlFor='password'>Password:</label>
+          <input id='password' style={error ? { border: '1px solid  rgb(243, 29, 29)' } : null} required={true} onChange={(e) => { setPassword(e.target.value) }} type='password' />
           <input type='submit' />
         </form>
       </div>

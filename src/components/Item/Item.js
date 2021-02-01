@@ -7,13 +7,12 @@ import Modal from '../Modal/Modal';
 import './Item.css';
 
 function Item(props) {
-
-  const [isEdit, setIsEdit] = useState(false);
-  const [newItemName, setNewItemName] = useState('');
-  const [newAmount, setNewAmount] = useState('');
-
   const itemData = props.itemData;
   const categoryId = props.location.pathname.slice(10);
+
+  const [isEdit, setIsEdit] = useState(false);
+  const [newItemName, setNewItemName] = useState(itemData.item_name);
+  const [newAmount, setNewAmount] = useState(itemData.amount);
 
 
   const onDeleteHandler = (e) => {
