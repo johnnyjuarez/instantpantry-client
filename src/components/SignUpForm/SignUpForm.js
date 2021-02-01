@@ -8,7 +8,7 @@ function SignUpForm(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [error, setError] = useState({})
+  const [error, setError] = useState(null)
 
   const postUserHandler = (e) => {
     e.preventDefault();
