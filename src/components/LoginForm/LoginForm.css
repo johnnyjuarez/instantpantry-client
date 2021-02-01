@@ -31,3 +31,7 @@
 .loginForm-title {
   text-align: center;
 }
+
+.error-input {
+  border: 1px solid rgb(243, 29, 29);
+}

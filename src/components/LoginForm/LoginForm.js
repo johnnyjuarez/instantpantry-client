@@ -59,9 +59,9 @@ export default function LoginForm(props) {
         <h2 className='loginForm-title'>Login</h2>
         {error ? <p className='error'>{error}</p> : null}
         <label>Username:</label>
-        <input onChange={onChangeUsername} type='text' />
+        <input style={error ? { border: '1px solid  rgb(243, 29, 29)' } : null} onChange={onChangeUsername} type='text' />
         <label>Password:</label>
-        <input onChange={onChangePassword} type='password' />
+        <input style={error ? { border: '1px solid  rgb(243, 29, 29)' } : null} onChange={onChangePassword} type='password' />
         <input type='submit' />
       </form>
     </div>
